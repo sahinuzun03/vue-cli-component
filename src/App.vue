@@ -1,15 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <Title :titleText="text" :text="text2"/>
+    <Button @clean="cleanInput"/>
+    <!-- Clean eventini @ şeklinde çağırdım. -->
+    <input type="text" ref="inputText">
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Title from './components/Title1.vue'//Component'i buraya ekledim burada kullancağımı söyledim.
+import Button from './components/Button.vue'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components:{
+    Title,
+    Button
+  },
+  data(){
+    return{
+      text:"Vue 3'e Giriş",
+      text2:"Vue'ye hoş geldiniz!!"
+      //Buradaki props üzerinden beslenmesi için :titleText'i v-bind ettik
+    }
+  },
+  methods:{
+    cleanInput(){
+      this.$refs.inputText.value = '';
+    }
   }
 }
 </script>
